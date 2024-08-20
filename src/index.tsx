@@ -2,8 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/index.css";
 import reportWebVitals from "./reportWebVitals";
-import { ChakraProvider } from "@chakra-ui/react";
-import theme from "./theme";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./router";
 import "./i18n";
@@ -13,9 +11,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <ChakraProvider theme={theme}>
       <RouterProvider router={router} />
-    </ChakraProvider>
   </React.StrictMode>
 );
 

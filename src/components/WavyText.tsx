@@ -48,16 +48,15 @@ const WavyText: FC<Props> = ({
       },
     },
   };
-
-  console.log(props);
-
+  
   return (
     <motion.h1
-      style={{ display: "flex", overflow: "hidden", ...props?.style }}
+      style={{ display: "flex", overflow: "hidden" }}
       variants={container}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       ref={ref}
+      {...props}
     >
       {letters.map((letter, index) => (
         <motion.span key={index} variants={child}>
