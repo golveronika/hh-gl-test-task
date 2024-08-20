@@ -7,6 +7,9 @@ const theme = extendTheme({
         // ...
         900: "#1a202c",
       },
+      green: {
+        'light': '#00FFC8',
+      }
     },
   })
 
