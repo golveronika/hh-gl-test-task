@@ -1,17 +1,19 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter } from "react-router-dom";
 
-import { HomePage, PageNotFound } from './pages';
-import {
-    HOMEPAGE_ROUTE,
-} from './utils/constants';
+import { HomePage, PageNotFound, ProductPage } from "./pages";
+import { HOMEPAGE_ROUTE, PRODUCT_ROUTE } from "./utils/constants";
 
 export const router = createBrowserRouter([
-    {
-        element: <HomePage />,
-        path: `/${HOMEPAGE_ROUTE}`,
-    },
-    {
-        element: <PageNotFound />,
-        path: `*`,
-    },
+  {
+    element: <HomePage />,
+    path: `${HOMEPAGE_ROUTE}`,
+  },
+  {
+    element: <ProductPage />,
+    path: `/${PRODUCT_ROUTE}/:code`,
+  },
+  {
+    element: <PageNotFound />,
+    path: `*`,
+  },
 ]);

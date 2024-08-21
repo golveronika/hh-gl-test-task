@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import { twMerge } from "tailwind-merge";
 import Text from "../Text";
 
+import { PRODUCT_ROUTE } from "./../../utils/constants";
+
 interface IProps {
   product: IProduct;
 }
@@ -11,13 +13,14 @@ const ProductItem = ({ product }: IProps) => {
   const { t } = useTranslation();
 
   return (
-    <div
-      className="rounded-lg bg-gray-500 w-full h-full relative"
+    <a
+      className="rounded-lg bg-gray-500 w-full h-full relative block"
       style={{
         backgroundImage: `url(${product.image})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
+      href={`/${PRODUCT_ROUTE}/${product.code}`}
     >
       <div
         className={twMerge(
@@ -38,7 +41,7 @@ const ProductItem = ({ product }: IProps) => {
           {t("priceFrom", { price: product.price })}
         </Text>
       </div>
-    </div>
+    </a>
   );
 };
 

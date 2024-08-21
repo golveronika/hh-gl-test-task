@@ -19,12 +19,16 @@ export interface IProductsResponse {
   products: IProduct[];
 }
 
-export const getProducts = async (): Promise<IProductsResponse | null> => {
+export const getProducts = async (code?: string): Promise<IProductsResponse | null> => {
 
     const result = await axiosInstance
       .get(`/mocks/products.json`)
       .then((res) => {
-        return res?.data
+        const result = res?.data;
+        if (code) {
+          result.products = result?.products?.filter((product: IProduct) => product.code === code)
+        }
+        return result
       })
       .catch(() => {
         return null
