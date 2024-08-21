@@ -7,14 +7,25 @@ import { twMerge } from "tailwind-merge";
 import Text from "../components/Text";
 import { useRef } from "react";
 
+import useProducts from "./../api/query/useProducts";
+
+import ProductsGrid from "../components/ProductsGrid";
+
+
+import LayoutDefault from "../layouts/default";
 const HomePage = () => {
   const { t } = useTranslation();
 
   const ref = useRef(null);
   const isInView = useInView(ref);
 
+  const { data: productsData } = useProducts();
+
+  console.log("productsData", productsData);
+
   return (
-    <SmoothScrollProvider>
+    <LayoutDefault>
+    {/* <SmoothScrollProvider> */}
       <div
         className={twMerge(
           "h-screen w-full",
@@ -33,50 +44,13 @@ const HomePage = () => {
         </div>
       </div>
 
-      <div className="w-full container m-auto">
-        <motion.ul
-          ref={ref}
-          initial="closed"
-          animate={isInView ? "open" : "closed"}
-          variants={{
-            open: {
-              transition: { staggerChildren: 0.1, delayChildren: 0.05 },
-            },
-            closed: {
-              transition: { staggerChildren: 0.05, staggerDirection: -1 },
-            },
-          }}
-          className="grid grid-cols-3 gap-4 my-10"
-        >
-          {[1, 2, 3, 4, 5, 6].map((i) => (
-            <motion.li
-              key={i}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.95 }}
-              variants={{
-                open: {
-                  y: 0,
-                  opacity: 1,
-                  transition: {
-                    y: { stiffness: 1000, velocity: -100 },
-                  },
-                },
-                closed: {
-                  y: 50,
-                  opacity: 0,
-                  transition: {
-                    y: { stiffness: 1000 },
-                  },
-                },
-              }}
-              className="h-[260px] cursor-pointer bg-red-500"
-            >
-              {i}
-            </motion.li>
-          ))}
-        </motion.ul>
+      <div className="w-full container m-auto my-9">
+        {productsData?.products && (
+          <ProductsGrid products={productsData?.products} />
+        )}
       </div>
-    </SmoothScrollProvider>
+    {/* </SmoothScrollProvider> */}
+    </LayoutDefault>
   );
 };
 
