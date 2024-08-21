@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { PropsWithChildren, useEffect, useRef } from "react";
 
 const useSmoothScrollProvider = () => {
@@ -58,8 +59,7 @@ const SmoothScrollProvider = ({ children }: PropsWithChildren) => {
 
   useEffect(() => {
     init();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [init]);
 
   return (
     <div ref={wrapperRef} className="wrapper">

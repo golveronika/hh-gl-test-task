@@ -17,7 +17,7 @@ const Footer = () => {
   }>;
 
   return (
-    <footer className="w-full box-content	 h-28 relative flex justify-between container m-auto py-10">
+    <footer className="w-full box-content relative flex justify-between flex-col md:flex-row container m-auto py-10 px-10">
       <div
         className={twMerge(
           "h-full w-full",
@@ -52,11 +52,12 @@ const Footer = () => {
       <div
         className={twMerge(
           "h-full w-full",
-          "rounded-lg"
+          "rounded-lg box-content",
+          "flex-col md:flex-row pb-10 pt-10 md:pt-0"
         )}
       >
         {terms.map((item) => (
-          <a href={item.url} key={item.title} className="inline-block p-2 hover:underline">
+          <a href={item.url} key={item.title} className="block md:inline-block md:p-2 py-1 md:py-0 hover:underline">
             {item.title}
           </a>
         ))}
