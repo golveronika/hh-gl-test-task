@@ -6,12 +6,11 @@ export interface IFeesResponse {
     job: number;
 }
 
-export const getFees = async (): Promise<Array<IFeesResponse> | null> => {
+export const getFees = async (): Promise<IFeesResponse | null> => {
 
     const result = await axiosInstance
       .get(`/mocks/fees.json`)
       .then((res) => {
-        console.log(res)
         return res?.data
       })
       .catch(() => {
